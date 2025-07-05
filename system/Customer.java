@@ -12,7 +12,9 @@ public class Customer {
         return balance >= amount;
     }
     public void makePayment(double amount){
+        System.out.println("Transaction Completed Successfully");
         balance-=amount;
+        System.out.println("Remaining Balance : " + balance);
     }
     public double getBalance() { return balance; }
     public String getName() {return name;}
