@@ -19,6 +19,14 @@ public class Cart {
 
     }
 
+    public void removeItem(Product product) {
+        if (productQuantityMap.containsKey(product)) {
+            productQuantityMap.remove(product);
+            System.out.println("item removed successfully");
+        } else {
+            System.out.println("item is not in the cart!");
+        }
+
     public Map<Product, Integer> getAllitems() {
         return productQuantityMap;
     }

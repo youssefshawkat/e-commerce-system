@@ -24,14 +24,12 @@ public class Checkout {
         double currentItemTotalPrice;
         
         if (cart.getAllitems().isEmpty()) {
-            System.out.println("Cart is Empty!");
-            return;
+             throw new IllegalStateException("Cart is Empty!");
         }
 
         for (Product product : products.keySet()) {
             if (product instanceof Expirable && ((Expirable) product).isExpired()) {
-                System.out.println(product.getName() + " is Expired!");
-                return;
+                 throw new IllegalStateException(product.getName() + " is Expired!");
             }
             if (product instanceof Shippable) {
                 shippableProducts.put(product, products.get(product));
@@ -54,7 +52,7 @@ public class Checkout {
         reciept.append("Amount:        " + totalPrice);
         System.out.println(reciept);
         if (customer.getBalance() < totalPrice) {
-            System.out.println("Error insufficient funds!");
+             throw new IllegalStateException("Error insufficient funds!");
         } else {
             customer.makePayment(totalPrice);
             for (Product product : products.keySet()) {
