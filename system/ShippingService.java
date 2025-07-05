@@ -9,7 +9,7 @@ public class ShippingService {
     private Map<Product, Integer> shippableProducts;
 
     ShippingService(Map<Product, Integer> products) {
-        shippingNotice = new StringBuilder("** Shippment receipt ** \n");
+        shippingNotice = new StringBuilder("** Shipment notice ** \n");
         shippableProducts = products;
     }
 
@@ -22,7 +22,7 @@ public class ShippingService {
             totalWeight += weight;
             shippingNotice.append(quantity + "x " + product.getName() + "      " + weight + "g\n");
         }
-        shippingNotice.append("Total package weight " + totalWeight + "g\n");
+        shippingNotice.append("Total package weight " + totalWeight / 1000.0 + "kg\n");
         totalShippingCost = totalWeight * 0.027;
         System.out.println(shippingNotice);
         return totalShippingCost;

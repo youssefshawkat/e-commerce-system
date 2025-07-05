@@ -7,6 +7,9 @@ public class Cart {
     Map<Product, Integer> productQuantityMap = new HashMap<>();
 
     public void addItem(Product product, int quantity) {
+        if(productQuantityMap.containsKey(product)){
+            quantity+=productQuantityMap.get(product);
+        }
         if (quantity > product.getQuantity()) {
             throw new IllegalStateException("Sorry we only have " + product.getQuantity() + " in Stock");
         } else if (product instanceof Expirable && ((Expirable) product).isExpired()) {
@@ -26,6 +29,7 @@ public class Cart {
         } else {
             System.out.println("item is not in the cart!");
         }
+    }
 
     public Map<Product, Integer> getAllitems() {
         return productQuantityMap;
